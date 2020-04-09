@@ -9,7 +9,6 @@ client = commands.Bot(command_prefix='?')
 
 channels = ['rolar-dados']
 permitido = ["KemberllyKib3#5922"]
-<<<<<<< HEAD
 
 adv = 0
 
@@ -22,21 +21,7 @@ async def change_status():
 async def on_ready():
     print(f"""\n>>> Tá Onn <<<\n""")
     await client.change_presence(status=discord.Status.online, activity=discord.Activity(name="RPG de Mesa", type=discord.ActivityType.playing))
-=======
-status = ['RPG', 'Dados', 'Paciência Spider', 'League of Legends', 'Destiny 2', 'Minecraft', 'Dungeons & Dragons','Campo Minado']
-adv = 0
- 
-@tasks.loop(hours=1)
-async def change_status():
-    await client.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(random.choice(status)))
-    await clear(client)
 
-@client.event
-async def on_ready():
-    change_status.start()
-    print(f"""\n>>> Tá Onn <<<\n""")
-    #await client.change_presence(status=discord.Status.idle, activity=discord.Game('Campo Minado'))
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
 
 @client.event
 async def on_member_join(member):
@@ -48,7 +33,7 @@ async def on_member_join(member):
 async def on_command_error(ctx, error):
     if (commands.CommandNotFound):
         await ctx.send("Este comando não existe.")
-<<<<<<< HEAD
+
     if(commands.CommandError):
         await ctx.send("Você deve ter escrito algo.")
 
@@ -84,8 +69,6 @@ def rolagem(msg, adv=1):
             rollint.append(int(word))
 
     return formatar(rolldices+rollint), sum(resultado)
-=======
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
 
 def rightChannel(message):
     if str(message.channel) in channels:
@@ -93,7 +76,6 @@ def rightChannel(message):
     else:
         return True
 
-<<<<<<< HEAD
 def becomenotdiv3():
     global adv
     if div3(adv):
@@ -177,39 +159,6 @@ def rolardados(B, E, HM=1, advan=1): # (Begin, End, HowMany, Vantagem)
             rolagem.append(int(random.randint(B, E)))
         total = sum(rolagem)
         return rolagem, total
-=======
-def becomeImpar():
-    global adv
-    if adv % 2 == 0:
-        adv += 1
-        return True
-    else:
-        return True
-
-def becomePar():
-    global adv
-    if adv % 2 != 0:
-        adv += 1
-        return True
-    else:
-        return True
-
-def rolardados(B, E, HM=1): # (Begin, End, HowMany)
-    t = 1
-    rolagem = []
-    while t <= HM:
-        t += 1
-        rolagem.append(int(random.randint(B, E)))
-    total = sum(rolagem)
-    return rolagem, total
-
-def exagero(num, lim=10):
-    num = int(num)
-    if ((num>lim) or (num<0)):
-        return True
-    else:
-        return False
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
 
 def allowed(msg):
     if str(msg.author) in permitido:
@@ -222,7 +171,6 @@ async def hello(ctx):
     await ctx.send(f"""Olá, {ctx.author.mention}.\nEstou a sua disposição.""")
 
 @client.command()
-<<<<<<< HEAD
 async def sorte(ctx, sorte=1):
 
     global adv
@@ -269,13 +217,6 @@ async def d(ctx, msg):
 
 @client.command()
 async def d20(ctx, times=1):
-=======
-async def d20(ctx, mod=0, times=1):
-
-    if exagero(times):
-        await ctx.send(f"""{ctx.author.mention}, peço que repense essa quantidade de repetições, obrigado!""")
-        return
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
 
     if rightChannel(ctx):
         await ctx.send(f"""{ctx.author.mention}, peço que reenvie este comando no canal {channels[0]}, obrigado!""")
@@ -284,7 +225,6 @@ async def d20(ctx, mod=0, times=1):
     global adv
 
     if (times == 1):
-<<<<<<< HEAD
         chute, total = rolardados(1, 20, advan=adv)
         await ctx.send("{} sua rolagem resultou {}".format(ctx.author.mention, chute)) 
         adv+=1
@@ -293,33 +233,10 @@ async def d20(ctx, mod=0, times=1):
         chute, total = rolardados(1, 20, times, advan=adv)
         await ctx.send("{} sua rolagem resultou {} e o somatório: {}".format(ctx.author.mention, chute, total))
         adv+=1
-=======
-   
-        if (adv % 2 == 0):
-            adv += 1
-            chute, total = rolardados(10, 20, times)
-            await ctx.send("{} sua rolagem resultou {}".format(ctx.author.mention, chute))         
-            
-        elif(adv % 2 != 0):
-            adv += 1
-            chute, total = rolardados(1, 20, times)
-            await ctx.send("{} sua rolagem resultou {}".format(ctx.author.mention, chute)) 
-
-    else:
-        chute, total = rolardados(1, 20, times)
-        await ctx.send("{} sua rolagem resultou {} e o somatório: {}".format(ctx.author.mention, chute, total)) 
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
 
 @client.command()
 async def d12(ctx, times=1):
 
-<<<<<<< HEAD
-=======
-    if exagero(times,15):
-        await ctx.send(f"""{ctx.author.mention}, peço que repense essa quantidade de repetições, obrigado!""")
-        return
-
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
     if rightChannel(ctx):
         await ctx.send(f"""{ctx.author.mention}, peço que reenvie este comando no canal {channels[0]}, obrigado!""")
         return
@@ -334,13 +251,6 @@ async def d12(ctx, times=1):
 @client.command()
 async def d10(ctx, times=1):
 
-<<<<<<< HEAD
-=======
-    if exagero(times,15):
-        await ctx.send(f"""{ctx.author.mention}, peço que repense essa quantidade de repetições, obrigado!""")
-        return
-
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
     if rightChannel(ctx):
         await ctx.send(f"""{ctx.author.mention}, peço que reenvie este comando no canal {channels[0]}, obrigado!""")
         return
@@ -355,13 +265,6 @@ async def d10(ctx, times=1):
 @client.command()
 async def d8(ctx, times=1):
 
-<<<<<<< HEAD
-=======
-    if exagero(times,15):
-        await ctx.send(f"""{ctx.author.mention}, peço que repense essa quantidade de repetições, obrigado!""")
-        return
-
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
     if rightChannel(ctx):
         await ctx.send(f"""{ctx.author.mention}, peço que reenvie este comando no canal {channels[0]}, obrigado!""")
         return
@@ -373,20 +276,9 @@ async def d8(ctx, times=1):
         chute, total = rolardados(1, 8, times)
         await ctx.send("{} sua rolagem resultou {} e o somatório: {}".format(ctx.author.mention, chute, total))
 
-<<<<<<< HEAD
 @client.command()
 async def d6(ctx, times=1):
 
-=======
-
-@client.command()
-async def d6(ctx, times=1):
-
-    if exagero(times,15):
-        await ctx.send(f"""{ctx.author.mention}, peço que repense essa quantidade de repetições, obrigado!""")
-        return
-
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
     if rightChannel(ctx):
         await ctx.send(f"""{ctx.author.mention}, peço que reenvie este comando no canal {channels[0]}, obrigado!""")
         return
@@ -401,13 +293,6 @@ async def d6(ctx, times=1):
 @client.command()
 async def d4(ctx, times=1):
 
-<<<<<<< HEAD
-=======
-    if exagero(times, 15):
-        await ctx.send(f"""{ctx.author.mention}, peço que repense essa quantidade de repetições, obrigado!""")
-        return
-
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
     if rightChannel(ctx):
         await ctx.send(f"""{ctx.author.mention}, peço que reenvie este comando no canal {channels[0]}, obrigado!""")
         return
@@ -420,18 +305,13 @@ async def d4(ctx, times=1):
         await ctx.send("{} sua rolagem resultou {} e o somatório: {}".format(ctx.author.mention, chute, total))
    
 @client.command()
-<<<<<<< HEAD
 async def d100(ctx):
-=======
-async def d100(ctx, sorte=1):
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
 
     if rightChannel(ctx):
         await ctx.send(f"""{ctx.author.mention}, peço que reenvie este comando no canal "{channels[0]}", obrigado!""")
         return
 
     global adv
-<<<<<<< HEAD
     chute = rolardados(1, 100, advan=adv)
     await ctx.send("{} sua rolagem resultou {}".format(ctx.author.mention, chute[0]))
     adv+=1
@@ -476,45 +356,10 @@ async def detrap(ctx):
         await ctx.send("Este comando não existe.")
     return
     
-=======
-    
-    if (adv % 2 == 0):
-        adv += 1
-        chute = rolardados(50, 100)
-        await ctx.send("{} sua rolagem resultou {}".format(ctx.author.mention, chute))         
-        
-    elif(adv % 2 != 0):
-        adv += 1
-        chute = rolardados(1, 100)
-        await ctx.send("{} sua rolagem resultou {}".format(ctx.author.mention, chute))
-
-@client.command()
-async def trap(ctx):
-    global adv
-    if allowed(ctx):
-        becomePar()
-        await ctx.send("Tudo certo, boa sorte!")
-    else:
-        await ctx.send(f"""ERROR: 2458762xe53\nFunction Unavailable, try again later!""")
-        return
-
-@client.command()
-async def detrap(ctx):
-    global adv
-    if allowed(ctx):
-        becomeImpar()
-        await ctx.send("Armadilha montada, boa sorte!")
-    else:
-        await ctx.send(f"""ERROR: 2458762xe53\nFunction Unavailable, try again later!""")
-        return
-    
-N = []
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
 
 @client.command()
 async def valor(ctx):
     global adv
-<<<<<<< HEAD
     await ctx.send(adv)
 
 #region iniciativa e ordem
@@ -524,23 +369,12 @@ N = []
 async def iniciativa(ctx, n1="",n2="",n3="",n4="",n5="",n6="",n7="",n8="",n9="",n10="",n11="",n12="",n13="",n14="",n15="",n16="",n17=""):
     global N
     nomes = [n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16,n17]
-=======
-    await ctx.send(f"""{adv}""")
-
-#import numpy as np
-
-@client.command()
-async def iniciativa(ctx, n1="",n2="",n3="",n4="",n5="",n6="",n7="",n8="",n9=""):
-    global N
-    nomes = [n1,n2,n3,n4,n5,n6,n7,n8,n9]
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
     nomes.remove("")
     N = [x for x in nomes if x]
 
     if rightChannel(ctx):
         await ctx.send(f"""{ctx.author.mention}, peço que reenvie este comando no canal {channels[0]}, obrigado!""")
         return
-<<<<<<< HEAD
     
     with open("iniciativa.txt", "w+") as inic:
         #inic.writelines(N)
@@ -549,10 +383,6 @@ async def iniciativa(ctx, n1="",n2="",n3="",n4="",n5="",n6="",n7="",n8="",n9="")
     personagens = "** ~ **".join(N)
 
     await ctx.send(f"""Ordem de combate: **{personagens}** """)
-=======
-
-    await ctx.send(f"""Ordem de combate: {N}""")
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
 
 @client.command()
 async def ordem(ctx):
@@ -561,16 +391,12 @@ async def ordem(ctx):
         await ctx.send(f"""{ctx.author.mention}, peço que reenvie este comando no canal {channels[0]}, obrigado!""")
         return
 
-<<<<<<< HEAD
     with open("iniciativa.txt", "r") as inic:
         personagens = inic.readline()
         personagensformatado = personagens.split("** ~ **")
 
     await ctx.send(f"""Ordem de combate: **{"** ~ **".join(personagensformatado)}** """)
 #endregion iniciativa e ordem
-=======
-    await ctx.send(f"""Ordem de combate: {N}""")
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
 
 @client.command()
 async def clear(ctx):
@@ -590,23 +416,15 @@ client.remove_command('help')
 async def help(ctx):
     embed = discord.Embed(title="Dado Rodabem", description="Sou um rolador de dados. Minha lista de comandos são:", color=0x0326899)
     
-<<<<<<< HEAD
     embed.add_field(name="?d xd20+y", value="Rolar dados juntos e somar." )
-=======
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
-    embed.add_field(name="?d4 *vezes*", value="Rolar um d4 multiplicado." )
-    embed.add_field(name="?d6 *vezes*", value="Rolar um d6 multiplicado." )
-    embed.add_field(name="?d8 *vezes*", value="Rolar um d8 multiplicado." )
-    embed.add_field(name="?d10 *vezes*", value="Rolar um d10 multiplicado." )
-    embed.add_field(name="?d12 *vezes*", value="Rolar um d12 multiplicado." )
+    embed.add_field(name="?d4", value="Rolar um d4 multiplicado." )
+    embed.add_field(name="?d6", value="Rolar um d6 multiplicado." )
+    embed.add_field(name="?d8", value="Rolar um d8 multiplicado." )
+    embed.add_field(name="?d10", value="Rolar um d10 multiplicado." )
+    embed.add_field(name="?d12", value="Rolar um d12 multiplicado." )
     embed.add_field(name="?d100 *sorte*", value="Rolar um d100." )
-<<<<<<< HEAD
-    embed.add_field(name="?d20 *vezes*", value="Rolar um d20 multiplicado." )
+    embed.add_field(name="?d20", value="Rolar um d20 multiplicado." )
     embed.add_field(name="?iniciativa *nome nome ...*", value="Declarar ordem de combate." )
-=======
-    embed.add_field(name="?d20 *mod* *vezes*", value="Rolar um d20 com mod(opcional) multiplicado." )
-    embed.add_field(name="?iniciativa *nome nome*", value="Declarar ordem de combate." )
->>>>>>> c2a4de05084f8c44c5edf1e99a32f0d902f4178e
     embed.add_field(name="?ordem", value="Mostrar ordem de combate" )
     embed.add_field(name="?help", value="Gera isso aqui que você tá lendo.", inline=True)
     await ctx.send(content=None, embed=embed)
